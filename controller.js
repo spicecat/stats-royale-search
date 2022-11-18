@@ -1,6 +1,6 @@
-const { } = require('./client');
+const { getInfo } = require('./client');
 
-const ytController = async (req, res) =>
-    1
+const ytController = async ({ query }, res) =>
+    res.status(200).send(await getInfo())
 
 module.exports = { ytController };

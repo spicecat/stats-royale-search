@@ -1,20 +1,9 @@
-const { google } = require('googleapis');
-const { API_KEY } = process.env;
+const ytdl = require('ytdl-core');
 
-const blogger = google.blogger({
-    version: 'v3',
-    auth: API_KEY
-});
+const getInfo = async () => {
+    const a = await ytdl.getInfo('3uOgOaVclzk');
+    console.log(a.player_response.microformat.playerMicroformatRenderer.description.simpleText)
+    return a
+}
 
-const params = {
-    blogId: '3213900'
-};
-
-// get the blog details
-blogger.blogs.get(params, (err, res) => {
-    if (err) {
-        console.error(err);
-        throw err;
-    }
-    console.log(`The blog url is ${res.data.url}`);
-});
+module.exports = { getInfo };
